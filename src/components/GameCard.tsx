@@ -9,6 +9,7 @@ import {
   Icon,
   Image,
   Link,
+  Tooltip,
 } from "@chakra-ui/react";
 import { FaSteam } from "react-icons/fa";
 import PlatformIconList from "./PlatformIconList";
@@ -37,11 +38,11 @@ const GameCard = ({ game }: Props) => {
           </HStack>
           <Divider />
           <HStack align="center" paddingTop={5}>
-            {steam.map((d) => (
-              <Link key={d.game_id} href={d.url}>
-                <Icon as={FaSteam} boxSize={10} color="gray.400" />
+            <Tooltip label="Steam">
+              <Link href={steam[0]?.url}>
+                <Icon as={FaSteam} boxSize={10} color="gray.300" />
               </Link>
-            ))}
+            </Tooltip>
           </HStack>
         </CardBody>
         <Divider />
