@@ -1,4 +1,5 @@
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import apiClient, { FetchResponse } from "../services/api-client";
 
 interface Stores {
   id: number;
@@ -8,6 +9,12 @@ interface Stores {
 }
 
 const useStores = (slug: string) =>
-  useData<Stores>("/games/" + slug + "/stores");
+  useQuery({
+    queryKey: ["stores"],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Stores>>("/games/" + slug + "/stores")
+        .then((res) => res.data),
+  });
 
 export default useStores;

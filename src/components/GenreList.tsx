@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   HStack,
   Heading,
   Image,
@@ -19,13 +20,18 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <Center h="600px">
+        <Spinner />
+      </Center>
+    );
 
   return (
     <>
       <Heading marginBottom={3}>Genres</Heading>
       <List>
-        {data.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY={1}>
             <HStack>
               <Image
