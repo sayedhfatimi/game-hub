@@ -57,16 +57,16 @@ const StoresList = ({ slug }: Props) => {
                 case 4: // Apple App Store id
                   storeSlug = "apple";
                   break;
-                case 5:
+                case 5: // GOG Store id
                   storeSlug = "gog";
                   break;
-                case 6:
+                case 6: // Nintendo Store id
                   storeSlug = "nintendo";
                   break;
                 case 7: // Xbox Marketplace Store id
                   storeSlug = "xbox";
                   break;
-                case 8:
+                case 8: // Google Play Store id
                   storeSlug = "googleplay";
                   break;
                 case 11: // Epic Games id
