@@ -21,7 +21,6 @@ interface Props {
 const StoresList = ({ slug }: Props) => {
   const { data: stores, isLoading, error } = useStores(slug!);
   let storeSlug = "";
-  console.log(stores);
 
   const iconMap: { [key: string]: IconType } = {
     playstation: FaPlaystation,
