@@ -62,7 +62,7 @@ const StoresList = ({ slug }: Props) => {
                   <Icon
                     as={iconMap[storeIdMap[item.store_id]]}
                     boxSize={10}
-                    color="white"
+                    color="gray.500"
                     marginRight={4}
                     _hover={{
                       transform: "scale(1.5)",
