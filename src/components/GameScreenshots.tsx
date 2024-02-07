@@ -1,5 +1,6 @@
 import useScreenshots from "../hooks/useScreenshots";
 import { Image, SimpleGrid } from "@chakra-ui/react";
+import IsLoadingSpinner from "./IsLoadingSpinner";
 
 interface Props {
   gameId: number;
@@ -8,7 +9,7 @@ interface Props {
 const GameScreenshots = ({ gameId }: Props) => {
   const { data, isLoading, error } = useScreenshots(gameId);
 
-  if (isLoading) return null;
+  if (isLoading) return <IsLoadingSpinner />;
 
   if (error) throw error;
 

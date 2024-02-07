@@ -1,16 +1,17 @@
 import { useParams } from "react-router-dom";
 import useGame from "../hooks/useGame";
-import { GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { GridItem, Heading, SimpleGrid } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameTrailer from "../components/GameTrailer";
 import GameScreenshots from "../components/GameScreenshots";
+import IsLoadingSpinner from "../components/IsLoadingSpinner";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
   const { data: game, isLoading, error } = useGame(slug!);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <IsLoadingSpinner />;
 
   if (error || !game) throw error;
 
