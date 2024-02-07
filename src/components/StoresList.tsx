@@ -1,4 +1,4 @@
-import { HStack, Icon, Link, SimpleGrid } from "@chakra-ui/react";
+import { HStack, Icon, Link, SimpleGrid, Text } from "@chakra-ui/react";
 import useStores from "../hooks/useStores";
 import IsLoadingSpinner from "./IsLoadingSpinner";
 import DefinitionItem from "./DefinitionItem";
@@ -20,7 +20,6 @@ interface Props {
 
 const StoresList = ({ slug }: Props) => {
   const { data: stores, isLoading, error } = useStores(slug!);
-  let storeSlug = "";
 
   const iconMap: { [key: string]: IconType } = {
     playstation: FaPlaystation,
@@ -34,9 +33,23 @@ const StoresList = ({ slug }: Props) => {
     nintendo: BsNintendoSwitch,
   };
 
+  const storeIdMap: { [key: string]: string } = {
+    1: "steam",
+    2: "microsoft",
+    3: "playstation",
+    4: "apple",
+    5: "gog",
+    6: "nintendo",
+    7: "xbox",
+    8: "googleplay",
+    11: "epicgames",
+  };
+
   if (isLoading) return <IsLoadingSpinner />;
 
   if (error) throw error;
+
+  if (stores?.count === 0) return null;
 
   return (
     <>
@@ -44,40 +57,10 @@ const StoresList = ({ slug }: Props) => {
         <DefinitionItem term="Stores">
           <HStack marginY={5}>
             {stores?.results.map((item) => {
-              switch (item.store_id) {
-                case 1: // Steam Store id
-                  storeSlug = "steam";
-                  break;
-                case 2: // Microsoft Store id
-                  storeSlug = "microsoft";
-                  break;
-                case 3: // Playstation Store id
-                  storeSlug = "playstation";
-                  break;
-                case 4: // Apple App Store id
-                  storeSlug = "apple";
-                  break;
-                case 5: // GOG Store id
-                  storeSlug = "gog";
-                  break;
-                case 6: // Nintendo Store id
-                  storeSlug = "nintendo";
-                  break;
-                case 7: // Xbox Marketplace Store id
-                  storeSlug = "xbox";
-                  break;
-                case 8: // Google Play Store id
-                  storeSlug = "googleplay";
-                  break;
-                case 11: // Epic Games id
-                  storeSlug = "epicgames";
-                  break;
-              }
-
               return (
                 <Link key={item.store_id} href={item.url} isExternal={true}>
                   <Icon
-                    as={iconMap[storeSlug]}
+                    as={iconMap[storeIdMap[item.store_id]]}
                     boxSize={10}
                     color="white"
                     marginRight={4}
