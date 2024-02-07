@@ -1,4 +1,4 @@
-import { HStack, Icon, Link, SimpleGrid, Text } from "@chakra-ui/react";
+import { HStack, Icon, Link, SimpleGrid } from "@chakra-ui/react";
 import useStores from "../hooks/useStores";
 import IsLoadingSpinner from "./IsLoadingSpinner";
 import DefinitionItem from "./DefinitionItem";
