@@ -8,6 +8,7 @@ const useStores = (slug: string) => {
   return useQuery({
     queryKey: ["stores", slug],
     queryFn: apiClient.getAll,
+    staleTime: 24 * 60 * 60 * 1000, // 24h
   });
 };
 

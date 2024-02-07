@@ -8,6 +8,7 @@ const useTrailers = (gameId: number) => {
   return useQuery({
     queryKey: ["trailers", gameId],
     queryFn: apiClient.getAll,
+    staleTime: 24 * 60 * 60 * 1000, // 24h
   });
 };
 
