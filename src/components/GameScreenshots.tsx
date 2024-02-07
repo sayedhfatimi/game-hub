@@ -1,6 +1,7 @@
+import { Box, Heading } from "@chakra-ui/react";
 import useScreenshots from "../hooks/useScreenshots";
-import { Image, SimpleGrid } from "@chakra-ui/react";
 import IsLoadingSpinner from "./IsLoadingSpinner";
+import ImageGallery, { ReactImageGalleryItem } from "react-image-gallery";
 
 interface Props {
   gameId: number;
@@ -8,6 +9,9 @@ interface Props {
 
 const GameScreenshots = ({ gameId }: Props) => {
   const { data, isLoading, error } = useScreenshots(gameId);
+  const images: ReactImageGalleryItem[] | { original: string }[] = [];
+
+  data?.results.map((file) => images.push({ original: file.image }));
 
   if (isLoading) return <IsLoadingSpinner />;
 
@@ -15,11 +19,16 @@ const GameScreenshots = ({ gameId }: Props) => {
 
   return (
     <>
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-        {data?.results.map((file) => (
-          <Image key={file.id} src={file.image} />
-        ))}
-      </SimpleGrid>
+      <Box padding={2}>
+        <Heading fontSize="md" color="gray.600" marginBottom={2}>
+          Screenshots
+        </Heading>
+        <ImageGallery
+          items={images}
+          showBullets={true}
+          showPlayButton={false}
+        />
+      </Box>
     </>
   );
 };

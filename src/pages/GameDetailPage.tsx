@@ -26,8 +26,8 @@ const GameDetailPage = () => {
           <StoresList slug={game.slug} />
         </GridItem>
         <GridItem>
-          <GameTrailer gameId={game.id} />
           <GameScreenshots gameId={game.id} />
+          <GameTrailer gameId={game.id} />
         </GridItem>
       </SimpleGrid>
     </>
